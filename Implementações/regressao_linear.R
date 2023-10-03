@@ -24,7 +24,7 @@ lm_Lucas <- function(formula, data, alpha = .05){
   p_valor <- pt(abs(estat_t), n-p, lower.tail = F)
   
   # ICS
-  li <- qt(alpha, n-p)
+  li <- qt(alpha/2, n-p)
   IC_inf <- betas + li*var_betas
   IC_sup <- betas - li*var_betas
   
@@ -76,3 +76,5 @@ lm_Lucas <- function(formula, data, alpha = .05){
 library(wooldridge)
 lm_Lucas(educ ~ motheduc + fatheduc + abil + I(abil^2), htv, .05)
 summary(lm(educ ~ motheduc + fatheduc + abil + I(abil^2), htv))
+modelo <- lm_Lucas(educ ~ motheduc + fatheduc + abil + I(abil^2), htv, .05)
+C <- matrix(c(matrix(0,nrow=4), diag(4)),nrow = 4)
