@@ -1,4 +1,41 @@
 #' @importFrom MASS rnegbin
+#' @title Ajusta modelos lineares generalizados (MLG)
+#' @description
+#' A função realiza o ajuste de vários modelos lineares generalizados
+#' manualmente, retornando um intervalo de confiança para os
+#' parâmetros estimados, além dos objetos retornados pela função
+#' `glm`.
+#' @param f Fórmula do ajuste a ser realizado;
+#' @param dados Conjunto de dados do tipo `data.frame` com as colunas especificadas na fórmula (parâmetro `f`);
+#' @param init `matrix` com uma coluna e `p` linhas, onde `p` é o
+#'  número de parâmetros incluídos no modelo. Esses valores serão
+#'   utilizados como chutes iniciais para o ajuste via método de
+#'   Newton-Raphson;
+#' @param phi_init objeto do tipo `numeric` com o valor inicial
+#' para o parâmetro \eqn{\phi} quando se está estimando um modelo
+#' binomial negativo;
+#' @param link Função de ligação a ser utilizada no modelo. As funções de ligação implementadas até o momento são:
+#' \itemize{
+#'  \item{Binomial}{"logit" (ligação logpistica), "probit" (ligação
+#'   probito, a inversa da f.d.a. da normal padrão) e "cloglog" (
+#'   ligação log-log complementar);}
+#'  \item{Binomial negativa}{"log"}
+#'  \item{Poisson}{"log"}
+#' }
+#' @param distr Distribuição assumida para a variável resposta. Até
+#' o momento, estão implementadas as distribuições "Binomial",
+#' "Binomial negativa" e "Poisson";
+#' @param eps Valor de \eqn{\varepsilon}, a distância máxima entre
+#' duas iterações consecutivas do método de Newton para se dizer
+#' que houve convergência do método;
+#' @param maxiter Número máximo de iterações a serem realizadas no
+#' método de Newton para obtenção das estimativas dos parâmetros;
+#' @param show.result Variável do tipo `logical` indicando se é
+#' de interesse imprimir os valores dos parâmetros e outras
+#' informações sumárias;
+#' @param gamma Variável do tipo `numeric` entre 0 e 1, indicando
+#' a confiança desejada no intervalo a ser construído para os
+#' parâmetros.
 #' @export
 mlg <- function(f, dados = NULL, init, phi_init, link = "logit", distr, eps=1e-6, maxiter=100, show.result = TRUE, gamma = 0.95){
 
