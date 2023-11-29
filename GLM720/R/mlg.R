@@ -1,4 +1,3 @@
-#' @importFrom MASS rnegbin
 #' @title Ajusta modelos lineares generalizados (MLG)
 #' @description
 #' A função realiza o ajuste de vários modelos lineares generalizados
@@ -36,6 +35,41 @@
 #' @param gamma Variável do tipo `numeric` entre 0 e 1, indicando
 #' a confiança desejada no intervalo a ser construído para os
 #' parâmetros.
+#' @return Retorna uma lista com as informações do ajuste. A
+#' descrição de cada item está apresentada abaixo:
+#' \itemize{
+#' \item out: `matrix` com as estimativas dos parâmetros geradas
+#'  a cada iteração do método de Newton;
+#' \item est: `matrix` com as estimativas (finais) dos parâmetros
+#'   do modelo;
+#' \item iter: Número de iterações necessárias até a convergência;
+#' \item se: `vector` com os erros-padrão dos estimadores dos
+#' parâmetros do modelo;
+#' \item preditor: `matrix` com o valor de \eqn{\eta} (preditor
+#'  linear) de cada observação;
+#' \item mv.ajust: `matrix` com os valores das médias ajustadas
+#' para cada observação;
+#' \item z.values: `matrix` com os valores das estatísticas-Z
+#' do teste individual para cada \eqn{\beta_i = 0};
+#' \item p.value: `matrix` com os p-valores dos testes individuais para cada \eqn{\beta_i = 0  \times  \beta_i \neq 0};
+#' \item LI: `matrix` com os limites inferiores dos intervalos de confiança de \eqn{\gamma}% para os parâmetros;
+#' \item LS: `matrix` com os limites superiores dos intervalos de confiança de \eqn{\gamma}% para os parâmetros;
+#' \item AIC: AIC do modelo ajustado;
+#' \item BIC: BIC do modelo ajustado;
+#' \item desvio: Desvio do modelo ajustado;
+#' \item gl.res: Número de graus de liberdade dos resíduos;
+#' \item comp.desvio: Resíduos componentes do desvio do modelo
+#'  ajustado;
+#' \item residuos.pearson: Resíduos de Pearson do desvio do modelo
+#'  ajustado;
+#' \item comp.desvio.st: Resíduos componentes do desvio padronizados
+#'  do modelo ajustado;
+#' \item residuos.pearson.st: Resíduos de Pearson padronizados
+#'  do modelo ajustado;
+#'  \item Hhat: Matriz hessiana ajustada.
+#' }
+#'
+#' @importFrom MASS rnegbin
 #' @export
 mlg <- function(f, dados = NULL, init, phi_init, link = "logit", distr, eps=1e-6, maxiter=100, show.result = TRUE, gamma = 0.95){
 
