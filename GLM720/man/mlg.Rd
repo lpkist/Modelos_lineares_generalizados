@@ -33,11 +33,11 @@ binomial negativo;}
 
 \item{link}{Função de ligação a ser utilizada no modelo. As funções de ligação implementadas até o momento são:
 \itemize{
- \item{Binomial}{"logit" (ligação logpistica), "probit" (ligação
+ \item{Binomial: }{"logit" (ligação logística), "probit" (ligação
   probito, a inversa da f.d.a. da normal padrão) e "cloglog" (
   ligação log-log complementar);}
- \item{Binomial negativa}{"log"}
- \item{Poisson}{"log"}
+ \item{Binomial negativa: }{"log"}
+ \item{Poisson: }{"log"}
 }}
 
 \item{distr}{Distribuição assumida para a variável resposta. Até
